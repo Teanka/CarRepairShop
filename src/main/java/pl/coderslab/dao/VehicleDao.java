@@ -48,7 +48,7 @@ public class VehicleDao {
     public int saveToDB(Vehicle vehicle) {
         try (Connection connection = DbUtil.getConn()) {
 
-            String sql = "INSERT INTO customers(brand, model, production_date, registration_no, next_inspection, customer_id) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO vehicles(brand, model, production_date, registration_no, next_inspection, customer_id) VALUES (?, ?, ?, ?, ?, ?)";
             String[] generatedColumns = {"ID"};
             PreparedStatement preparedStatement = connection.prepareStatement(sql, generatedColumns);
             preparedStatement.setString(1, vehicle.getBrand());
@@ -81,12 +81,12 @@ public class VehicleDao {
         return null;
     }
 
-    public static Vehicle findByCustomerId(int customerId) {
+    public static List<Vehicle> findByCustomerId(int customerId) {
         List<String> params = new ArrayList<>();
         params.add(String.valueOf(customerId));
         List<Vehicle> list = prepareVehicles("SELECT * FROM vehicles WHERE customer_id=?", params);
         if (list != null && list.size() > 0) {
-            return list.get(0);
+            return list;
         }
         return null;
     }

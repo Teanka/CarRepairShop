@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Index</title>
 </head>
 <body>
 <%@ include file="header.jspx"%>
@@ -25,15 +25,18 @@
         <th scope="col">Szczegóły naprawy</th>
     </tr>
     </thead>
-    <c:forEach items="${currentRepairs}" var="repair">
+    <c:forEach items="${currentOrders}" var="repair">
         <tr>
-            <td>${repair.id}</td>
-            <td>${repair.start_date}</td>
-            <td>${repair.problem_desc}</td>
-            <td>${repair.employee_id}</td>
-            <td><a href="/repairDetails?id=${repair.id}">Szczegółowe dane</a></td>
+            <td>${order.id}</td>
+            <td>${order.start_date}</td>
+            <td>${order.problem_desc}</td>
+            <td>${order.employeeId}</td>
+            <td><a href="/orderDetails?id=${order.id}">Szczegółowe dane</a></td>
         </tr>
     </c:forEach>
+
+    <h4><a href="/employee">Przejdź do zarządzania pracownikami</a></h4>
+    <h2><a href="/customer">Przejdź do zarządzania klientami</a></h2>
 </table>
 <%@ include file="footer.jspx"%>
 </body>

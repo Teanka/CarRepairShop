@@ -29,6 +29,9 @@ Aktualni klienci warsztatu:
     </tr>
     </thead>
     <tbody>
+    <%--<input type="text" class= "date" name = "date" value = "<fmt:formatDate value="${dateVar}" pattern="dd-MM-yyyy" />"/>--%>
+    <%--<fmt:parseDate value="${customer.birthDate}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />--%>
+    <%--<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date" pattern="dd.MM.yyyy" />--%>
     <c:forEach items="${customers}" var="item">
         <tr>
             <td>${item.id}</td>
@@ -46,9 +49,6 @@ Aktualni klienci warsztatu:
         <input type="hidden" name="id" value=${customer.id}>
         <input type="text" class="form-control" placeholder="Imię" name="firstName" required>
         <input type="text" class="form-control" placeholder="Nazwisko klienta" name="lastName" required>
-        <%--<input type="text" class= "date" name = "date" value = "<fmt:formatDate value="${dateVar}" pattern="dd-MM-yyyy" />"/>--%>
-        <%--<fmt:parseDate value="${customer.birthDate}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />--%>
-        <%--<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date" pattern="dd.MM.yyyy" />--%>
         <input type="date" class="form-control" placeholder="Data urodzenia w formacie yyyy-MM-dd (opcjonalnie)" name="birthDate" >
 
     </div>
@@ -76,6 +76,7 @@ Aktualni klienci warsztatu:
 </form>
 
 <h2><a href="/employee">Przejdź do zarządzania pracownikami</a></h2>
+<h2><a href="/vehicle">Przejdź do przeglądania samochodów</a></h2>
 <%@ include file="footer.jspx" %>
 <%--<a href="/vehicles?id=${client.id}">Lista pojazdów</a><br>--%>
 <%--<a href="/clientEdit?id=${client.id}">Edytuj dane klienta</a><br>--%>
