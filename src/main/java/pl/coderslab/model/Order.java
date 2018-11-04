@@ -1,13 +1,13 @@
 package pl.coderslab.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class Order {
     private int id;
-    private Timestamp received;
-    private Timestamp plannedRepairDate;
-    private Timestamp startDate;
-    private Timestamp endDate;
+    private LocalDate received;
+    private LocalDate plannedRepairDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int employeeId;//foreign key
     private String orderDescription;
     private String repairDescription;
@@ -21,7 +21,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, Timestamp received, Timestamp plannedRepairDate, int employeeId, String orderDescription,
+    public Order(int id, LocalDate received, LocalDate plannedRepairDate, int employeeId, String orderDescription,
                  String status, int vehicleId) {
         this.id = id;
         this.received = received;
@@ -32,19 +32,8 @@ public class Order {
         this.vehicleId = vehicleId;
     }
 
-    public Order(int id, Timestamp received, Timestamp plannedRepairDate, Timestamp startDate, int employeeId,
-                 String orderDescription, String status, int vehicleId) {
-        this.id = id;
-        this.received = received;
-        this.plannedRepairDate = plannedRepairDate;
-        this.startDate = startDate;
-        this.employeeId = employeeId;
-        this.orderDescription = orderDescription;
-        this.status = status;
-        this.vehicleId = vehicleId;
-    }
 
-    public Order(int id, Timestamp received, Timestamp plannedRepairDate, Timestamp startDate, Timestamp endDate,
+    public Order(int id, LocalDate received, LocalDate plannedRepairDate, LocalDate startDate, LocalDate endDate,
                  int employeeId, String orderDescription, String repairDescription, String status, int vehicleId,
                  double customerCost, double partsCost, int manHour, int hoursTotal) {
         this.id = id;
@@ -71,35 +60,35 @@ public class Order {
         this.id = id;
     }
 
-    public Timestamp getReceived() {
+    public LocalDate getReceived() {
         return received;
     }
 
-    public void setReceived(Timestamp received) {
+    public void setReceived(LocalDate received) {
         this.received = received;
     }
 
-    public Timestamp getPlannedRepairDate() {
+    public LocalDate getPlannedRepairDate() {
         return plannedRepairDate;
     }
 
-    public void setPlannedRepairDate(Timestamp plannedRepairDate) {
+    public void setPlannedRepairDate(LocalDate plannedRepairDate) {
         this.plannedRepairDate = plannedRepairDate;
     }
 
-    public Timestamp getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Timestamp getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Customers CRUD</title>
     <meta charset="utf-8">
 
 
@@ -29,9 +29,6 @@ Aktualni klienci warsztatu:
     </tr>
     </thead>
     <tbody>
-    <%--<input type="text" class= "date" name = "date" value = "<fmt:formatDate value="${dateVar}" pattern="dd-MM-yyyy" />"/>--%>
-    <%--<fmt:parseDate value="${customer.birthDate}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />--%>
-    <%--<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date" pattern="dd.MM.yyyy" />--%>
     <c:forEach items="${customers}" var="item">
         <tr>
             <td>${item.id}</td>
@@ -77,12 +74,7 @@ Aktualni klienci warsztatu:
 
 <h2><a href="/employee">Przejdź do zarządzania pracownikami</a></h2>
 <h2><a href="/vehicle">Przejdź do przeglądania samochodów</a></h2>
+<h2><a href="/orders">Przejdź do zamówień</a></h2>
 <%@ include file="footer.jspx" %>
-<%--<a href="/vehicles?id=${client.id}">Lista pojazdów</a><br>--%>
-<%--<a href="/clientEdit?id=${client.id}">Edytuj dane klienta</a><br>--%>
-<%--<a href="/clientDel?id=${client.id}">Usuń klienta z bazy</a>--%>
-<%--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--%>
-<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>--%>
-<%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>--%>
 </body>
 </html>

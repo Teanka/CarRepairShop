@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>employee</title>
+    <title>employees CRUD</title>
 </head>
 <body>
 <%@ include file="header.jspx"%>
@@ -81,6 +81,8 @@
     <button type="submit" class="btn btn-primary">Edytuj pracownika</button>
 </form>
 <h2><a href="/customer">Przejdź do zarządzania klientami</a></h2>
+<h2><a href="/vehicle">Przejdź do widoku pojazdów</a></h2>
+<h2><a href="/orders">Przejdź do zamówień</a></h2>
 <%@ include file="footer.jspx"%>
 </body>
 </html>

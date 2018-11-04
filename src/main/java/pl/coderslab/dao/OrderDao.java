@@ -5,6 +5,7 @@ import pl.coderslab.service.DbService;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,23 +23,29 @@ public class OrderDao {
         try (Connection connection = DbUtil.getConn()) {
 
             int manHour = getManHour(order, connection);
-            String sql = "INSERT INTO orders(received, planned_repair_date, start_date, end_date, employee_id, order_description, repair_description," +
+            String sql = "INSERT INTO orders(received, planned_repair_date, start_date, employee_id, order_description, repair_description," +
                     "status, vehicle_id, customer_cost, parts_cost, man_hour, hours_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            if(order.getEndDate()!=null){
+                sql = "INSERT INTO orders(received, planned_repair_date, start_date, employee_id, order_description, repair_description," +
+                        "status, vehicle_id, customer_cost, parts_cost, man_hour, hours_total, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            }
             String[] generatedColumns = {"ID"};
             PreparedStatement preparedStatement = connection.prepareStatement(sql, generatedColumns);
-            preparedStatement.setTimestamp(1, order.getReceived());
-            preparedStatement.setTimestamp(2, order.getPlannedRepairDate());
-            preparedStatement.setTimestamp(3, order.getStartDate());
-            preparedStatement.setTimestamp(4, order.getEndDate());
-            preparedStatement.setInt(5, order.getEmployeeId());
-            preparedStatement.setString(6, order.getOrderDescription());
-            preparedStatement.setString(7, order.getRepairDescription());
-            preparedStatement.setString(8, order.getStatus());
-            preparedStatement.setInt(9, order.getVehicleId());
-            preparedStatement.setDouble(10, order.getCustomerCost());
-            preparedStatement.setDouble(11, order.getPartsCost());
-            preparedStatement.setInt(12, manHour);
-            preparedStatement.setInt(13, order.getHoursTotal());
+            preparedStatement.setDate(1, java.sql.Date.valueOf(order.getReceived()));
+            preparedStatement.setDate(2, java.sql.Date.valueOf(order.getPlannedRepairDate()));
+            preparedStatement.setDate(3, java.sql.Date.valueOf(order.getStartDate()));
+            preparedStatement.setInt(4, order.getEmployeeId());
+            preparedStatement.setString(5, order.getOrderDescription());
+            preparedStatement.setString(6, order.getRepairDescription());
+            preparedStatement.setString(7, order.getStatus());
+            preparedStatement.setInt(8, order.getVehicleId());
+            preparedStatement.setDouble(9, order.getCustomerCost());
+            preparedStatement.setDouble(10, order.getPartsCost());
+            preparedStatement.setInt(11, manHour);
+            preparedStatement.setInt(12, order.getHoursTotal());
+            if(order.getEndDate()!=null) {
+                preparedStatement.setDate(13, java.sql.Date.valueOf(order.getEndDate()));
+            }
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
@@ -57,23 +64,29 @@ public class OrderDao {
         try (Connection connection = DbUtil.getConn()) {
 
             int manHour = getManHour(order,connection);
-            String sql = "UPDATE orders SET received =?, planned_repair_date =?, start_date =?, end_date = ?, employee_id = ?, order_description = ?," +
+            String sql = "UPDATE orders SET received =?, planned_repair_date =?, start_date =?, employee_id = ?, order_description = ?," +
                     "repair_description = ?, status = ?, vehicle_id = ?, customer_cost = ?, parts_cost = ?, man_hour = ?, hours_total = ? WHERE id=?";
+            if(order.getEndDate()!=null){
+                sql = "UPDATE orders SET received =?, planned_repair_date =?, start_date =?, end_date = ?, employee_id = ?, order_description = ?," +
+                        "repair_description = ?, status = ?, vehicle_id = ?, customer_cost = ?, parts_cost = ?, man_hour = ?, hours_total = ? WHERE id=?";
+            }
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setTimestamp(1, order.getReceived());
-            preparedStatement.setTimestamp(2, order.getPlannedRepairDate());
-            preparedStatement.setTimestamp(3, order.getStartDate());
-            preparedStatement.setTimestamp(4, order.getEndDate());
-            preparedStatement.setInt(5, order.getEmployeeId());
-            preparedStatement.setString(6, order.getOrderDescription());
-            preparedStatement.setString(7, order.getRepairDescription());
-            preparedStatement.setString(8, order.getStatus());
-            preparedStatement.setInt(9, order.getVehicleId());
-            preparedStatement.setDouble(10, order.getCustomerCost());
-            preparedStatement.setDouble(11, order.getPartsCost());
-            preparedStatement.setInt(12, manHour);
-            preparedStatement.setInt(13, order.getHoursTotal());
-            preparedStatement.setInt(14, order.getId());
+            preparedStatement.setDate(1, java.sql.Date.valueOf(order.getReceived()));
+            preparedStatement.setDate(2, java.sql.Date.valueOf(order.getPlannedRepairDate()));
+            preparedStatement.setDate(3, java.sql.Date.valueOf(order.getStartDate()));
+            preparedStatement.setInt(4, order.getEmployeeId());
+            preparedStatement.setString(5, order.getOrderDescription());
+            preparedStatement.setString(6, order.getRepairDescription());
+            preparedStatement.setString(7, order.getStatus());
+            preparedStatement.setInt(8, order.getVehicleId());
+            preparedStatement.setDouble(9, order.getCustomerCost());
+            preparedStatement.setDouble(10, order.getPartsCost());
+            preparedStatement.setInt(11, manHour);
+            preparedStatement.setInt(12, order.getHoursTotal());
+            preparedStatement.setInt(13, order.getId());
+            if(order.getEndDate()!= null) {
+                preparedStatement.setDate(14, java.sql.Date.valueOf(order.getEndDate()));
+            }
             preparedStatement.executeUpdate();
 
         } catch (
@@ -105,10 +118,20 @@ public class OrderDao {
         return null;
     }
 
-    public static List<Order> findByCustomerId(int customerId) {
+    public static List<Order> findByVehicleId(int vehicleId) {
         List<String> params = new ArrayList<>();
-        params.add(String.valueOf(customerId));
-        List<Order> list = prepareOrders("SELECT * FROM orders WHERE customer_id=?", params);
+        params.add(String.valueOf(vehicleId));
+        List<Order> list = prepareOrders("SELECT * FROM orders WHERE vehicle_id=?", params);
+        if (list != null && list.size() > 0) {
+            return list;
+        }
+        return null;
+    }
+
+    public static List<Order> findByStatusInRepair() {
+        List<String> params = new ArrayList<>();
+        params.add("W_naprawie");
+        List<Order> list = prepareOrders("SELECT id, received, start_date, employee_id, order_description, vehicle_id FROM orders WHERE status = ?", params);
         if (list != null && list.size() > 0) {
             return list;
         }
@@ -126,7 +149,7 @@ public class OrderDao {
     }
 
     public static List<Order> findAll() {
-        return prepareOrders("SELECT * FROM orders", null);
+        return prepareOrders("SELECT * FROM orders ORDER BY id DESC", null);
     }
 
 
@@ -158,15 +181,15 @@ public class OrderDao {
             for (String[] item : list) {
                 Order orderItem = new Order();
                 orderItem.setId(Integer.parseInt(item[0]));
-                orderItem.setReceived(Timestamp.valueOf(item[1]));
-                orderItem.setPlannedRepairDate(Timestamp.valueOf(item[2]));
-                orderItem.setStartDate(Timestamp.valueOf(item[3]));
-                orderItem.setEndDate(Timestamp.valueOf(item[4]));
+                orderItem.setReceived(LocalDate.parse(item[1]));
+                orderItem.setPlannedRepairDate(LocalDate.parse(item[2]));
+                orderItem.setStartDate(LocalDate.parse(item[3]));
+                orderItem.setEndDate(LocalDate.parse(item[4]));
                 orderItem.setEmployeeId(Integer.parseInt(item[5]));
                 orderItem.setOrderDescription(item[6]);
                 orderItem.setRepairDescription(item[7]);
-//                if (Status.values[])
                 orderItem.setStatus(item[8]);
+                orderItem.setVehicleId(Integer.parseInt(item[9]));
                 orderItem.setCustomerCost(Double.parseDouble(item[10]));
                 orderItem.setPartsCost(Double.parseDouble(item[11]));
                 orderItem.setManHour(Integer.parseInt(item[12]));

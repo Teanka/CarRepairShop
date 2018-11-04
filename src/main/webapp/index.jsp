@@ -18,30 +18,36 @@
 <table border="1" class="table">
     <thead>
     <tr>
-        <th scope="col">ID naprawy</th>
-        <th scope="col">Data rozpoczęcia naprawy</th>
-        <th scope="col">Opis problemu</th>
-        <th scope="col">ID Pracownika</th>
-        <th scope="col">Szczegóły naprawy</th>
+        <th scope="col">ID NAPRAWY</th>
+        <th scope="col">DATA ROZPOCZĘCIA NAPRAWY</th>
+        <th scope="col">OPIS PROBLEMU OD KLIENTA</th>
+        <th scope="col">ID PRACOWNIKA</th>
+        <th scope="col">ID SAMOCHODU</th>
     </tr>
     </thead>
-    <c:forEach items="${currentOrders}" var="repair">
+    <tbody>
+    <c:forEach items="${currentOrders}" var="order">
+
         <tr>
             <td>${order.id}</td>
-            <td>${order.start_date}</td>
-            <td>${order.problem_desc}</td>
+            <td>${order.startDate}</td>
+            <td>${order.orderDescription}</td>
             <td>${order.employeeId}</td>
-            <td><a href="/orderDetails?id=${order.id}">Szczegółowe dane</a></td>
+            <td>${order.vehicleId}</td>
         </tr>
-    </c:forEach>
 
-    <h4><a href="/employee">Przejdź do zarządzania pracownikami</a></h4>
+    </c:forEach>
+    </tbody>
+
+    <h2><a href="/employee">Przejdź do zarządzania pracownikami</a></h2>
     <h2><a href="/customer">Przejdź do zarządzania klientami</a></h2>
+    <h2><a href="/vehicle">Przejdź do zarządzania klientami</a></h2>
+    <h2><a href="/orders">Przejdź do zamówień</a></h2>
 </table>
 <%@ include file="footer.jspx"%>
 </body>
 </html>
-
+<%--SELECT id, received, start_date, employee_id, order_description, vehicle_id FROM orders WHERE status = ?--%>
 <%--Utwórz pliki header.jsp, footer.jsp oraz plik index.jsp, który będzie je załączał – w ten sposób stworzymy szablon naszej aplikacji.--%>
 <%--W pliku header.jsp umieścimy linki nawigacyjne naszej aplikacji.--%>
 <%--W pliku footer.jsp umieścimy stopkę informacyjną.--%>

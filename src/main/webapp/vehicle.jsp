@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>CRUD vehicles</title>
+    <title>vehicles CRUD</title>
 </head>
 <body>
 <%@ include file="header.jspx" %>
@@ -93,6 +93,7 @@
 
 <h2><a href="/employee">Przejdź do zarządzania pracownikami</a></h2>
 <h2><a href="/customer">Przejdź do listy klientów</a></h2>
+<h2><a href="/orders">Przejdź do zamówień</a></h2>
 <%@ include file="footer.jspx" %>
 
 </body>
