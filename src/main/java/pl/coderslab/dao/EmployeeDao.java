@@ -40,25 +40,8 @@ public class EmployeeDao {
             }
         }
     }
-    public void edit( Employee employee) {
-        try (Connection connection = DbUtil.getConn()) {
-            String sql = "UPDATE employees SET first_name=?, last_name =?, address = ?, phone = ?, note = ?, man_hour = ? WHERE id=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, employee.getFirstName());
-            preparedStatement.setString(2, employee.getLastName());
-            preparedStatement.setString(3, employee.getAddress());
-            preparedStatement.setString(4, employee.getPhone());
-            preparedStatement.setString(5, employee.getNote());
-            preparedStatement.setInt(6, employee.getManHour());
-            preparedStatement.setInt(7, employee.getId());
-            preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-        public int saveToDB( Employee employee) {
+           public int saveToDB( Employee employee) {
             try (Connection connection = DbUtil.getConn()) {
                 String sql = "INSERT INTO employees(first_name, last_name, address, phone, note, man_hour) VALUES (?, ?, ?, ?, ?, ?)";
                 String[] generatedColumns = {"ID"};
@@ -82,6 +65,24 @@ public class EmployeeDao {
             }
             return -1;
         }
+
+    public void edit( Employee employee) {
+        try (Connection connection = DbUtil.getConn()) {
+            String sql = "UPDATE employees SET first_name=?, last_name =?, address = ?, phone = ?, note = ?, man_hour = ? WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, employee.getFirstName());
+            preparedStatement.setString(2, employee.getLastName());
+            preparedStatement.setString(3, employee.getAddress());
+            preparedStatement.setString(4, employee.getPhone());
+            preparedStatement.setString(5, employee.getNote());
+            preparedStatement.setInt(6, employee.getManHour());
+            preparedStatement.setInt(7, employee.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

@@ -42,29 +42,6 @@ public class CustomerDao {
         }
     }
 
-    public void edit(Customer customer) {
-        try (Connection connection = DbUtil.getConn()) {
-
-            String sql = "UPDATE customers SET first_name=?, last_name =? WHERE id=?";
-            if (customer.getBirthDate() != null) {
-                sql = "UPDATE customers SET first_name=?, last_name =?, birth_date = ? WHERE id=?";
-            }
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, customer.getFirstName());
-            preparedStatement.setString(2, customer.getLastName());
-            if (customer.getBirthDate() != null) {
-                preparedStatement.setDate(3, java.sql.Date.valueOf(customer.getBirthDate()));
-                preparedStatement.setInt(4, customer.getId());
-                preparedStatement.executeUpdate();
-            } else {
-                preparedStatement.setInt(3, customer.getId());
-                preparedStatement.executeUpdate();
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public int saveToDB(Customer customer) {
         try (Connection connection = DbUtil.getConn()) {
@@ -92,6 +69,30 @@ public class CustomerDao {
             e.printStackTrace();
         }
         return -1;
+    }
+
+    public void edit(Customer customer) {
+        try (Connection connection = DbUtil.getConn()) {
+
+            String sql = "UPDATE customers SET first_name=?, last_name =? WHERE id=?";
+            if (customer.getBirthDate() != null) {
+                sql = "UPDATE customers SET first_name=?, last_name =?, birth_date = ? WHERE id=?";
+            }
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, customer.getFirstName());
+            preparedStatement.setString(2, customer.getLastName());
+            if (customer.getBirthDate() != null) {
+                preparedStatement.setDate(3, java.sql.Date.valueOf(customer.getBirthDate()));
+                preparedStatement.setInt(4, customer.getId());
+                preparedStatement.executeUpdate();
+            } else {
+                preparedStatement.setInt(3, customer.getId());
+                preparedStatement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Customer findById(int id) {

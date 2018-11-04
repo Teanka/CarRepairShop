@@ -11,42 +11,42 @@ public class Order {
     private int employeeId;//foreign key
     private String orderDescription;
     private String repairDescription;
-    private int statusId; //foreign key
+    private String status;
     private int vehicleId;//foreign key
     private double customerCost;
     private double partsCost;
-    private double manHour;// z pola employee manHour
+    private int manHour;// z pola employee manHour
     private int hoursTotal;
 
     public Order() {
     }
 
     public Order(int id, Timestamp received, Timestamp plannedRepairDate, int employeeId, String orderDescription,
-                 int statusId, int vehicleId) {
+                 String status, int vehicleId) {
         this.id = id;
         this.received = received;
         this.plannedRepairDate = plannedRepairDate;
         this.employeeId = employeeId;
         this.orderDescription = orderDescription;
-        this.statusId = statusId;
+        this.status = status;
         this.vehicleId = vehicleId;
     }
 
     public Order(int id, Timestamp received, Timestamp plannedRepairDate, Timestamp startDate, int employeeId,
-                 String orderDescription, int statusId, int vehicleId) {
+                 String orderDescription, String status, int vehicleId) {
         this.id = id;
         this.received = received;
         this.plannedRepairDate = plannedRepairDate;
         this.startDate = startDate;
         this.employeeId = employeeId;
         this.orderDescription = orderDescription;
-        this.statusId = statusId;
+        this.status = status;
         this.vehicleId = vehicleId;
     }
 
     public Order(int id, Timestamp received, Timestamp plannedRepairDate, Timestamp startDate, Timestamp endDate,
-                 int employeeId, String orderDescription, String repairDescription, int statusId, int vehicleId,
-                 double customerCost, double partsCost, double manHour, int hoursTotal) {
+                 int employeeId, String orderDescription, String repairDescription, String status, int vehicleId,
+                 double customerCost, double partsCost, int manHour, int hoursTotal) {
         this.id = id;
         this.received = received;
         this.plannedRepairDate = plannedRepairDate;
@@ -55,7 +55,7 @@ public class Order {
         this.employeeId = employeeId;
         this.orderDescription = orderDescription;
         this.repairDescription = repairDescription;
-        this.statusId = statusId;
+        this.status = status;
         this.vehicleId = vehicleId;
         this.customerCost = customerCost;
         this.partsCost = partsCost;
@@ -127,12 +127,12 @@ public class Order {
         this.repairDescription = repairDescription;
     }
 
-    public int getStatusId() {
-        return statusId;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getVehicleId() {
@@ -159,11 +159,11 @@ public class Order {
         this.partsCost = partsCost;
     }
 
-    public double getManHour() {
+    public int getManHour() {
         return manHour;
     }
 
-    public void setManHour(double manHour) {
+    public void setManHour(int manHour) {
         this.manHour = manHour;
     }
 
@@ -186,7 +186,7 @@ public class Order {
                 ", employeeId=" + employeeId +
                 ", orderDescription='" + orderDescription + '\'' +
                 ", repairDescription='" + repairDescription + '\'' +
-                ", statusId=" + statusId +
+                ", status=" + status +
                 ", vehicleId=" + vehicleId +
                 ", customerCost=" + customerCost +
                 ", partsCost=" + partsCost +

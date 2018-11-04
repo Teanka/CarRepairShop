@@ -24,27 +24,6 @@ public class VehicleDao {
     }
 
 
-    public void edit(Vehicle vehicle) {
-        try (Connection connection = DbUtil.getConn()) {
-
-            String sql = "UPDATE vehicles SET brand=?, model =?, production_date =?, registration_no = ?, next_inspection = ?, customer_id = ? WHERE id=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, vehicle.getBrand());
-            preparedStatement.setString(2, vehicle.getModel());
-            preparedStatement.setDate(3, java.sql.Date.valueOf(vehicle.getProductionDate()));
-            preparedStatement.setString(4, vehicle.getRegistrationNo());
-            preparedStatement.setDate(5, java.sql.Date.valueOf(vehicle.getNextInspection()));
-            preparedStatement.setInt(6, vehicle.getCustomerId());
-            preparedStatement.setInt(7, vehicle.getId());
-            preparedStatement.executeUpdate();
-
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public int saveToDB(Vehicle vehicle) {
         try (Connection connection = DbUtil.getConn()) {
 
@@ -69,6 +48,28 @@ public class VehicleDao {
             e.printStackTrace();
         }
         return -1;
+    }
+
+
+    public void edit(Vehicle vehicle) {
+        try (Connection connection = DbUtil.getConn()) {
+
+            String sql = "UPDATE vehicles SET brand=?, model =?, production_date =?, registration_no = ?, next_inspection = ?, customer_id = ? WHERE id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, vehicle.getBrand());
+            preparedStatement.setString(2, vehicle.getModel());
+            preparedStatement.setDate(3, java.sql.Date.valueOf(vehicle.getProductionDate()));
+            preparedStatement.setString(4, vehicle.getRegistrationNo());
+            preparedStatement.setDate(5, java.sql.Date.valueOf(vehicle.getNextInspection()));
+            preparedStatement.setInt(6, vehicle.getCustomerId());
+            preparedStatement.setInt(7, vehicle.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (
+                SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static Vehicle findById(int id) {
