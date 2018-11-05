@@ -67,8 +67,8 @@ public class OrderDao {
             String sql = "UPDATE orders SET received =?, planned_repair_date =?, start_date =?, employee_id = ?, order_description = ?," +
                     "repair_description = ?, status = ?, vehicle_id = ?, customer_cost = ?, parts_cost = ?, man_hour = ?, hours_total = ? WHERE id=?";
             if(order.getEndDate()!=null){
-                sql = "UPDATE orders SET received =?, planned_repair_date =?, start_date =?, end_date = ?, employee_id = ?, order_description = ?," +
-                        "repair_description = ?, status = ?, vehicle_id = ?, customer_cost = ?, parts_cost = ?, man_hour = ?, hours_total = ? WHERE id=?";
+                sql = "UPDATE orders SET received =?, planned_repair_date =?, start_date =?, employee_id = ?, order_description = ?," +
+                        "repair_description = ?, status = ?, vehicle_id = ?, customer_cost = ?, parts_cost = ?, man_hour = ?, hours_total = ?, end_date = ? WHERE id=?";
             }
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setDate(1, java.sql.Date.valueOf(order.getReceived()));
@@ -83,10 +83,10 @@ public class OrderDao {
             preparedStatement.setDouble(10, order.getPartsCost());
             preparedStatement.setInt(11, manHour);
             preparedStatement.setInt(12, order.getHoursTotal());
-            preparedStatement.setInt(13, order.getId());
             if(order.getEndDate()!= null) {
-                preparedStatement.setDate(14, java.sql.Date.valueOf(order.getEndDate()));
+                preparedStatement.setDate(13, java.sql.Date.valueOf(order.getEndDate()));
             }
+            preparedStatement.setInt(14, order.getId());
             preparedStatement.executeUpdate();
 
         } catch (
@@ -131,7 +131,7 @@ public class OrderDao {
     public static List<Order> findByStatusInRepair() {
         List<String> params = new ArrayList<>();
         params.add("W_naprawie");
-        List<Order> list = prepareOrders("SELECT id, received, start_date, employee_id, order_description, vehicle_id FROM orders WHERE status = ?", params);
+        List<Order> list = prepareOrders("SELECT * FROM orders WHERE status = ?", params);
         if (list != null && list.size() > 0) {
             return list;
         }

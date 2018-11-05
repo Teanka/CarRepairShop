@@ -82,9 +82,9 @@
         <input type="number" class="form-control" placeholder="id samochodu" name="vehicleId" required>
         <input type="number" class="form-control" placeholder="koszt klienta" name="customerCost">
         <input type="number" class="form-control" placeholder="koszt części" name="partsCost">
-        <input type="number" class="form-control" placeholder="ilość godzin" name="hours">
+        <input type="number" class="form-control" placeholder="ilość godzin" name="hoursTotal">
     </div>
-    <button type="submit" class="btn btn-primary">Dodaj samochód</button>
+    <button type="submit" class="btn btn-primary">Dodaj zamówienie</button>
 </form>
 
 <h3>Podaj numer zamówienia do usunięcia z bazy:</h3>
@@ -125,7 +125,7 @@
         <input type="number" class="form-control" placeholder="koszt części" name="partsCostEd">
         <input type="number" class="form-control" placeholder="ilość godzin" name="hoursEd">
     </div>
-    <button type="submit" class="btn btn-primary">Dodaj samochód</button>
+    <button type="submit" class="btn btn-primary">zmień zamówienie</button>
 </form>
 <h2><a href="/employee">Przejdź do zarządzania pracownikami</a></h2>
 <h2><a href="/customer">Przejdź do listy klientów</a></h2>

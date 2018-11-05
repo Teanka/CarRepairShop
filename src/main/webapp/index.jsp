@@ -38,12 +38,12 @@
 
     </c:forEach>
     </tbody>
-
-    <h2><a href="/employee">Przejdź do zarządzania pracownikami</a></h2>
-    <h2><a href="/customer">Przejdź do zarządzania klientami</a></h2>
-    <h2><a href="/vehicle">Przejdź do zarządzania klientami</a></h2>
-    <h2><a href="/orders">Przejdź do zamówień</a></h2>
 </table>
+<h2><a href="/employee">Przejdź do zarządzania pracownikami</a></h2>
+<h2><a href="/customer">Przejdź do zarządzania klientami</a></h2>
+<h2><a href="/vehicle">Przejdź do zarządzania klientami</a></h2>
+<h2><a href="/orders">Przejdź do zamówień</a></h2>
+<h2><a href="/reportone">Przejdź do raportu roboczogodzin</a></h2>
 <%@ include file="footer.jspx"%>
 </body>
 </html>

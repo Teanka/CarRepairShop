@@ -35,14 +35,17 @@ public class OrderController extends HttpServlet {
             if (request.getParameter("status") != null ) {
                 order.setStatus(request.getParameter("status"));
             }
+            if(request.getParameter("vehicleId")!=null) {
+                order.setVehicleId(Integer.parseInt(request.getParameter("vehicleId")));
+            }
             if(request.getParameter("customerCost")!=null&& !request.getParameter("customerCost").isEmpty()){
                 order.setCustomerCost(Double.parseDouble(request.getParameter("customerCost")));
             }
             if(request.getParameter("partsCost")!=null &&!request.getParameter("partsCost").isEmpty()){
                 order.setPartsCost(Double.parseDouble(request.getParameter("partsCost")));
             }
-            if(request.getParameter("hours")!=null &&!request.getParameter("hours").isEmpty()){
-                order.setVehicleId(Integer.parseInt(request.getParameter("hours")));
+            if(request.getParameter("hoursTotal")!=null &&!request.getParameter("hoursTotal").isEmpty()){
+                order.setHoursTotal(Integer.parseInt(request.getParameter("hoursTotal")));
             }
             OrderDao.getInstance().saveToDB(order);
 
@@ -70,6 +73,9 @@ public class OrderController extends HttpServlet {
             if (request.getParameter("statusEd") != null ) {
                 order.setStatus(request.getParameter("statusEd"));
             }
+            if(request.getParameter("vehicleIdEd")!=null) {
+                order.setVehicleId(Integer.parseInt(request.getParameter("vehicleIdEd")));
+            }
             if(request.getParameter("customerCostEd")!=null){
                 order.setCustomerCost(Double.parseDouble(request.getParameter("customerCostEd")));
             }
@@ -77,7 +83,7 @@ public class OrderController extends HttpServlet {
                 order.setPartsCost(Double.parseDouble(request.getParameter("partsCostEd")));
             }
             if(request.getParameter("hoursEd")!=null){
-                order.setVehicleId(Integer.parseInt(request.getParameter("hoursEd")));
+                order.setHoursTotal(Integer.parseInt(request.getParameter("hoursEd")));
             }
             OrderDao.getInstance().edit(order);
         }
