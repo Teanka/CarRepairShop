@@ -14,15 +14,15 @@ import java.util.List;
 @WebServlet("/index")
 public class Index extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Order> currentOrders = OrderDao.findByStatusInRepair();
-        request.setAttribute("currentOrders", currentOrders);
+//        List<Order> currentOrders = OrderDao.findByStatus("W_naprawie");
+//        request.setAttribute("currentOrders", currentOrders);
         doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=utf-8");
-        List<Order> currentOrders = OrderDao.findByStatusInRepair();
+        List<Order> currentOrders = OrderDao.findByStatus("W_naprawie");
         request.setAttribute("currentOrders", currentOrders);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }

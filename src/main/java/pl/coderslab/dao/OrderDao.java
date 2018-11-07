@@ -128,9 +128,9 @@ public class OrderDao {
         return null;
     }
 
-    public static List<Order> findByStatusInRepair() {
+    public static List<Order> findByStatus(String status) {
         List<String> params = new ArrayList<>();
-        params.add("W_naprawie");
+        params.add(status);
         List<Order> list = prepareOrders("SELECT * FROM orders WHERE status = ?", params);
         if (list != null && list.size() > 0) {
             return list;

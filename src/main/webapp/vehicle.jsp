@@ -14,6 +14,8 @@
 </head>
 <body>
 <%@ include file="header.jspx" %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 <h4>Samochody wybranego klienta: </h4><br>
 <h5>Podaj numer id klienta, którego samochody chcesz obejrzeć <br>
     (wpisz "0" jeśli chcesz obejrzeć wszystkie samochody dostępne w bazie)</h5>
@@ -59,9 +61,9 @@
         <input type="hidden" name="id" value=${vehicle.id}>
         <input type="text" class="form-control" placeholder="marka" name="brand" required>
         <input type="text" class="form-control" placeholder="model" name="model" required>
-        <input type="date" class="form-control" placeholder="Data produkcji" name="productionDate" required>
+        data produkcji: <input type="date" class="form-control" placeholder="Data produkcji" name="productionDate" required>
         <input type="text" class="form-control" placeholder="nr rejestracyjny" name="registrationNo" required>
-        <input type="date" class="form-control" placeholder="Data przeglądu" name="nextInspection" required>
+        następny przegląd: <input type="date" class="form-control" placeholder="Data przeglądu" name="nextInspection" required>
         <input type="number" class="form-control" placeholder="nr klienta" name="customerIdAdd" required>
 
     </div>
@@ -83,9 +85,9 @@
         <input type="number" class="form-control" placeholder="id" name="idEdit" required>
         <input type="text" class="form-control" placeholder="marka" name="brandEd" required>
         <input type="text" class="form-control" placeholder="model" name="modelEd" required>
-        <input type="date" class="form-control" placeholder="Data produkcji" name="productionDateEd" required>
+        data produkcji: <input type="date" class="form-control" placeholder="Data produkcji" name="productionDateEd" required>
         <input type="text" class="form-control" placeholder="nr rejestracyjny" name="registrationNoEd" required>
-        <input type="date" class="form-control" placeholder="Data przeglądu" name="nextInspectionEd" required>
+        następny przegląd: <input type="date" class="form-control" placeholder="Data przeglądu" name="nextInspectionEd" required>
         <input type="number" class="form-control" placeholder="nr klienta" name="customerIdEd" required>
     </div>
     <button type="submit" class="btn btn-primary">Edytuj samochód</button>
@@ -94,6 +96,10 @@
 <h2><a href="/employee">Przejdź do zarządzania pracownikami</a></h2>
 <h2><a href="/customer">Przejdź do listy klientów</a></h2>
 <h2><a href="/orders">Przejdź do zamówień</a></h2>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 <%@ include file="footer.jspx" %>
 
 </body>
